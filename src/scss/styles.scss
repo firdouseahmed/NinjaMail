@@ -1,0 +1,492 @@
+@import 'scss-reset/_reset.scss';
+
+// colors
+$white-color: #ffffff;
+$black-color: #000000;
+$green-color: #4ba87d;
+
+// fonts 
+$regular-font: Raleway;
+$secondary-font: PlayfairDisplay;
+// font size 
+$regular-size: 16px;
+
+// mixins 
+@mixin flex-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+// $breakpoint is the variable that can have several values
+
+@mixin devices ($breakpoint) { 
+  
+  @if $breakpoint == mobilelarge {    
+    @media only screen and (min-width: 500px) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {    
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop {    
+    @media only screen and (min-width: 992px) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {    
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+body{
+    background-color: $white-color;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    font-family: $regular-font;
+    font-size: $regular-size;
+    color: $black-color;
+    box-sizing: border-box;
+    a{
+        text-decoration: none;
+        color: inherit
+    }
+    header{
+        @include flex-layout;
+        height: 100px;
+        padding: 0 15px;
+        position: sticky;
+        z-index: 99;
+        top: 0;
+        background-color: $white-color;
+        @include devices(tablet) {
+            padding: 0px 30px;
+        }
+        nav{
+            a{
+                display: inline-block;
+
+                img.NinjaMail-Logo {
+                    width: 180px;
+                    height: auto;
+                  }
+            }
+            &.nav-link{
+                display: flex;
+                font-size: 17px;
+                font-weight: 800;
+                font-style: normal;
+                line-height: 1.18;
+                text-align: left;
+                color: #000;
+                ul{
+                    display: none;
+                    @include devices(tablet) {
+                        display: block;
+                    }
+                    li{
+                        @include devices(laptop) {
+                            padding: 10px;
+                        }
+                        display: inline-block;
+                        padding: 10px 5px;
+                        position: relative;
+                        &:a{
+                            text-decoration: none;
+                            color: inherit
+                        }
+                        &:hover::after{
+                            border-bottom: 4px solid #4ba87d;
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                        }
+                    }
+                }
+                button{
+                    @include devices(laptop) {
+                        padding: 10px 20px;
+                    }
+                    display: inline-block;
+                    background-color: $green-color;
+                    color: $white-color;
+                    font-size: 17px;
+                    font-weight: 800;
+                    font-style: normal;
+                    line-height: 1.18;
+                    padding: 10px 5px;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+    }
+    section{
+        &.banner-section{
+            background: url('./../images/banner-image.jpg') no-repeat;
+            background-position: top;
+            background-size: contain;
+            margin: 0px;
+            @include devices(tablet) {
+                margin: 20px;
+                background-position: top right;
+            }
+            @include devices(laptop) {
+                margin: 50px;
+            }
+            .banner-left-section{
+                width: 100%;
+                padding: 15px;
+                @include devices(mobilelarge) {
+                    width: 489px;
+                }
+                h1{
+                    font-family: $secondary-font;
+                    font-size: 49px;
+                    font-weight: 900;
+                    padding: 30px 30px 30px 0;
+                    @include devices(mobilelarge) {
+                        font-size: 59px;
+                        padding: 15px 0;
+
+                    }
+                }
+                p{
+                    font-size: 19px;
+                    font-weight: 500;
+                    line-height: 1.37;
+                    padding: 15px 0;
+
+                }
+                .cta-button{
+                    @include flex-layout;
+                    gap: 1%;
+                    button{
+                        max-width: 200px;
+                        width: 200px;
+                        margin: 15px 0;
+                        padding: 20px 0px;
+                        font-size: 21px;
+                        font-weight: 900;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.19;
+                        text-align: center;
+                        background-color: $green-color;
+                        color: $white-color;
+                        border: 2px solid $green-color;
+                        &:nth-last-child(1){
+                            background-color: $white-color;
+                            color: $green-color;
+                        }
+                    }
+                }
+
+            }
+        }
+        &.reach-customer-section{
+            background: #f7f7f7;
+            position: relative;
+
+            @include devices(tablet) {
+                // padding: 40px;
+            }
+            .reach-customer-inner{
+                @include flex-layout;
+                position: relative;
+                justify-content: center;
+                transform: translateY(50%);
+                z-index: 1;
+                &:before{
+                    content: '';
+                    background: url('./../images/slash_black.png') no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    content: "";
+                    height: 100%;
+                    left: 3%;
+                    position: absolute;
+                    top: -23%;
+                    width: 50%;
+                    z-index: 3;
+                }
+                .reach-customer-content{
+                    position: absolute;
+                    text-align: center;
+                    h2{
+                        font-family: $secondary-font;
+                        font-size: 30px;
+                        font-weight: 900;
+                        line-height: 1.33;
+                        color: $white-color;
+                        text-align: center;
+                        padding: 10px;
+                        @include devices(mobilelarge) {
+                            font-size: 60px;
+                            padding: 20px;
+                        }
+                    }
+                    button{
+                        font-size: 17px;
+                        font-weight: 900;
+                        line-height: 1.19;
+                        padding: 15px;
+                        color: $green-color;
+                        background-color: $white-color;
+                        text-align: center;
+                        margin: 10px;
+                        @include devices(mobilelarge) {
+                            font-size: 21px;
+                            margin: 20px;
+                            padding: 30px;
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+        &.card-section{
+            background: #caeac7;
+            padding: 250px 0;
+            position: relative;
+            &:after{
+                content: '';
+                background: url('./../images/slash_black.png') no-repeat;
+                background-size: cover;
+                background-position: left bottom;
+                content: "";
+                height: 100%;
+                right: 0;
+                position: absolute;
+                bottom: 0;
+                width: 50%;
+                z-index: 3;
+            }
+            .cards-inner{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 3%;
+                .card{
+                    width: 320px;
+                    background-color: $white-color;
+                    font-family: $regular-font;
+                    h2{
+                        font-family: $secondary-font;
+                        font-size: 43px;
+                        font-weight: 900;
+                        line-height: 1.09;
+                    }
+                    p{
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 1.63;
+                        padding: 20px;
+                        font-family: $regular-font;
+                    }
+                    button{
+                        font-size: 16px;
+                        font-weight: 800;
+                        line-height: 1.19;
+                        color: $green-color;
+                        margin: 0 20px 20px;
+                    }
+                    &:nth-last-child(2){
+                       margin-top: 10%;
+                    }
+                    &:nth-last-child(1){
+                        background-color: transparent;
+                        padding: 5% 1%;
+                        width: 80%;
+                        @include devices(mobilelarge) {
+                        width: 350px;
+                        }
+                    }
+                }
+            }
+        }
+        &.members-section{
+            @include flex-layout;
+            justify-content: center;
+            flex-wrap: wrap;
+            transform: translateY(-150px);
+            .members{
+                width: 342px;
+                height: 239px;
+                margin: 3%;
+                background-image: url('./../images/person1.jpg');
+                background-repeat: no-repeat;
+                display: flex;
+                width: 342px;
+                flex-direction: column;
+                justify-content: flex-end;
+                gap: 2%;
+                padding: 20px;
+                color: $white-color;
+                &:nth-child(2){
+                background-image: url('./../images/person2.jpg');
+                }
+                &:nth-child(3){
+                background-image: url('./../images/person3.jpg');
+                }
+                h2{
+                    font-size: 34px;
+                    font-weight: 900;
+                    line-height: 1.18;
+                }
+                h3{
+                    font-size: 19px;
+                    font-weight: bold;
+                    line-height: 1.16;
+                }
+            }
+        }
+        &.reach-out-section{
+            margin-top: -100px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            h2{
+                font-family: $secondary-font;
+                font-size: 44px;
+                font-weight: 900;
+                line-height: 1.09;
+                width: 90%;
+                padding: 15px;
+                text-align: center;
+                @include devices(tablet) {
+                    width: 60%;
+                }
+            }
+            .email-section{
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                font-size: 21px;
+                font-weight: 900;
+                line-height: 1.19;
+                padding: 15px 0;
+                .email-input{
+                    input{
+                        padding: 20px;
+                        width: 300px;
+                        height: 65px;
+                        border-radius: 5px;
+                        border: solid 1px #9f9f9f;
+                        @include devices(mobilelarge) {
+                            width: 420px;
+                        }
+                    }
+                    div{
+                        color: #4ba87d;
+                        padding: 10px;
+                    }
+                }
+                button{
+                    width: 221px;
+                    height: 65px;
+                    background-color: $green-color;
+                    color: $white-color;
+                }
+            }
+            .brand-section{
+                padding: 30px 0 50px 0;
+                @include flex-layout;
+                justify-content: center;
+                flex-wrap: wrap;
+                img{
+                    padding: 20px;
+                }
+            }
+        }
+        &.plan-section{
+            background-color: $green-color;
+            padding: 80px 0;
+            @include flex-layout;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            h2{
+                font-family: $secondary-font;
+                font-size: 60px;
+                font-weight: 900;
+                line-height: 1.33;
+                color: $white-color;
+                text-align: center;
+            }
+            button{
+                font-size: 21px;
+                font-weight: 900;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.19;
+                color: $green-color;
+                background-color: $white-color;
+                padding: 20px;
+            }
+        }
+    }
+    footer{
+        .footer-lists{
+            @include flex-layout;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 30px 10px;
+            .footer-logo{
+                img{
+                    width: 70%;
+                }
+            }
+            .footer-links{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                ul{
+                    padding: 10px;
+                    li{
+                        font-family: $regular-font;
+                        font-size: 19px;
+                        font-weight: bold;
+                        line-height: 1.16;
+                        padding: 2px;
+                    }
+                }
+            }
+        }
+        .copyright-section{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 2px solid $green-color;
+            padding: 15px;
+            @include devices(laptop) {
+            padding: 30px;
+            }
+            div{
+                padding: 20px 0;
+                span{
+                    font-size: 15px;
+                    font-weight: bold;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.2;
+                    padding: 5px;
+                    white-space: nowrap;
+                }
+            }
+
+        }
+    }
+}
